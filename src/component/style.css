@@ -1,0 +1,67 @@
+.sign_head, .login_head {
+    font-family: sans-serif;
+    font-size: 20px;
+    /* text-align: center;
+    margin: auto; */
+  }
+
+
+  button{
+      background-color: white;
+      border-style: none;
+  }
+ 
+  .input_name,
+  .input_pass,
+  .input_email{
+      height: 40px;
+      border-radius: 2px;
+      border: 1px solid rgb(179, 175, 182);  
+      width: 400px; 
+      color: #212529;
+      text-align: left;
+  }
+  
+  .pass_instruct{
+      font-size: 10px;
+  }
+  
+  
+  .sign_form{
+      width: 420px;
+      color: #212529;
+  }
+  
+  .signup_btn{
+      width: 405px;
+      height: 40px;
+      border-radius: 100px;
+      border: 1px solid rgb(179, 175, 182);
+      color: #fff;
+      background-color: blueviolet;
+      font-size:medium;
+  }
+  
+  .login_icons img{
+      padding: 1%;
+  } 
+
+.or_text{
+    text-align: center;
+}  
+
+i {
+    padding: 10px;
+    background: dodgerblue;
+    color: white;
+    min-width: 30px;
+    text-align: center;
+    border-radius: 5px;
+  }
+  
+.input_container{
+    display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  margin-bottom: -15px;
+}   
