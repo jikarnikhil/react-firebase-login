@@ -1,57 +1,77 @@
-import React from 'react'
+import React,{useState, useEffect} from 'react'
+import './App.css';
+import Login from './component/Login'
+import { auth } from './component/Config'
+import SignUp from './component/SignUp';
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 
-const LIST = [
-  {
-    id: '1',
-    title: 'The Road to React'
-  },
-  {
-    id: '2',
-    title: 'The Road To Subway'
-  }
-]
 
-const App = () => {
-  const [list, setList] = React.useState([]);
+function App() {
 
-  const handleFetch=()=>{
-    setList(LIST)
-  }
+  const [user, setUser] = useState(null)
 
-  if(list.length){
-    return(
-      <div>
-        <button type="button" onClick={handleFetch}>
-          Fetch
-        </button>
-      </div>
-    )
-  }else{
-    return <h1>kaisa laga mera majak</h1>
-  }
+  useEffect(()=>{
+    auth.onAuthStateChanged(async (user)=>{
+      setUser(user)
+    })
+  },[])
+
+  const signOut=()=>{
+        auth.signOut().then(()=>{
+          setUser(null);
+        })
+      }
+
   return (
-    <div>
-      <List list={list} />
+<div className="App">
+    {/* <Router>
+      <Switch>
+          <Route exact path="/login" component={Login} />
+          <Route path="/signup" component={SignUp} />
+      </Switch>
+    </Router> */}
+
+{user === null?
+  <Login />:
+  <button onClick={signOut}><h1>LogOut</h1></button>
+  }
+
     </div>
-  )
+  );
 }
 
-const List=({list}) => {
-  return(
-    <ul>
-      {list.map((item)=>(
-        <Item key={item.id} item={item} />
-      ))}
-    </ul>
-  )
-}
+export default App;
 
-const Item =({item}) =>{
-  return(
-    <li key={item.id}>
-      <span>{item.title}</span>
-    </li>
-  )
-}
 
-export default App
+
+
+
+
+
+
+
+
+
+
+// const App = () => {
+//   const [user, setUser] = useState(null)
+//   useEffect(()=>{
+//     auth.onAuthStateChanged(async (user)=>{
+//       setUser(user)
+//     })
+//   },[])
+  
+//   const signOut=()=>{
+//     auth.signOut().then(()=>{
+//       setUser(null);
+//     })
+//   }
+//   return (
+//     <div>
+//       {user === null?
+//       <button onClick={signInWithGoogle}>Login</button> :
+//       <button onClick={signOut}>LogOut</button>
+//       }
+      
+      
+//     </div>
