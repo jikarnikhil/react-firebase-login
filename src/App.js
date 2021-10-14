@@ -1,77 +1,57 @@
-import React,{useState, useEffect} from 'react'
-import './App.css';
-import Login from './component/Login'
-import { auth } from './component/Config'
-import SignUp from './component/SignUp';
-import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import React from 'react'
 
+const LIST = [
+  {
+    id: '1',
+    title: 'The Road to React'
+  },
+  {
+    id: '2',
+    title: 'The Road To Subway'
+  }
+]
 
-function App() {
+const App = () => {
+  const [list, setList] = React.useState([]);
 
-  const [user, setUser] = useState(null)
-
-  useEffect(()=>{
-    auth.onAuthStateChanged(async (user)=>{
-      setUser(user)
-    })
-  },[])
-
-  const signOut=()=>{
-        auth.signOut().then(()=>{
-          setUser(null);
-        })
-      }
-
-  return (
-<div className="App">
-    {/* <Router>
-      <Switch>
-          <Route exact path="/login" component={Login} />
-          <Route path="/signup" component={SignUp} />
-      </Switch>
-    </Router> */}
-
-{user === null?
-  <Login />:
-  <button onClick={signOut}><h1>LogOut</h1></button>
+  const handleFetch=()=>{
+    setList(LIST)
   }
 
+  if(list.length){
+    return(
+      <div>
+        <button type="button" onClick={handleFetch}>
+          Fetch
+        </button>
+      </div>
+    )
+  }else{
+    return <h1>kaisa laga mera majak</h1>
+  }
+  return (
+    <div>
+      <List list={list} />
     </div>
-  );
+  )
 }
 
-export default App;
+const List=({list}) => {
+  return(
+    <ul>
+      {list.map((item)=>(
+        <Item key={item.id} item={item} />
+      ))}
+    </ul>
+  )
+}
 
+const Item =({item}) =>{
+  return(
+    <li key={item.id}>
+      <span>{item.title}</span>
+    </li>
+  )
+}
 
-
-
-
-
-
-
-
-
-
-
-// const App = () => {
-//   const [user, setUser] = useState(null)
-//   useEffect(()=>{
-//     auth.onAuthStateChanged(async (user)=>{
-//       setUser(user)
-//     })
-//   },[])
-  
-//   const signOut=()=>{
-//     auth.signOut().then(()=>{
-//       setUser(null);
-//     })
-//   }
-//   return (
-//     <div>
-//       {user === null?
-//       <button onClick={signInWithGoogle}>Login</button> :
-//       <button onClick={signOut}>LogOut</button>
-//       }
-      
-      
-//     </div>
+export default App

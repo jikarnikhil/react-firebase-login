@@ -34,8 +34,8 @@ function SignUp() {
   };
 
   return (
-    <div>
-      <center>
+    <div className="main-class"> 
+      
         <form className="sign_form">
           <p className="sign_head">Sign Up and Start</p>
 
@@ -102,21 +102,22 @@ function SignUp() {
           <p>OR <br/><small>Sign In With</small></p>
 
           <div className="login_icons">
+          <button className="btn" onClick={(e) => handleClick(e, googleProvider)}>
             <img src="https://img.icons8.com/color/50/000000/facebook-circled--v1.png" />
-
+          </button>
             {/* <img src="https://img.icons8.com/color/50/000000/google-logo.png"/> */}
-            <button onClick={(e) => handleClick(e, googleProvider)}>
+            <button className="btn" onClick={(e) => handleClick(e, googleProvider)}>
               <img src="https://img.icons8.com/color/50/000000/google-logo.png" />
             </button>
 
-            <button onClick={(e) => handleClick(e, githubProvider)}>
+            <button className="btn" onClick={(e) => handleClick(e, githubProvider)}>
               <img src="https://img.icons8.com/ios-filled/50/000000/github.png" />
             </button>
           </div>
 
-          <p>Already have an account?<Link to="/Login">Login</Link></p>
+          {/* <p>Already have an account?<Link to="/Login">Login</Link></p> */}
         </form>
-      </center>
+      
     </div>
   );
 }
